@@ -10,6 +10,13 @@ const about = require('../data/about');
 const team = require('../data/team');
 const homes = require('../data/homes');
 
+let siteKey;
+if(!process.env.CONFIG) {
+	siteKey = require('../config/config').siteKey;
+} else {
+	siteKey = process.env.SITE_KEY;
+}
+
 const controller = {
 	renderIndex: (req, res) => {
 		console.log('root fired');
@@ -61,7 +68,7 @@ const controller = {
 			}
 
 			res.render('index.hbs', {
-				hoursReviews, about, team, homes
+				hoursReviews, about, team, homes, siteKey
 			})
 		}))
 		.catch((err) => {
