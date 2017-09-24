@@ -1,5 +1,57 @@
 // Contact Form Scripts
 
+
+$(document).ready(function() {
+
+	//validation for contact form
+	$('#contactForm').validate({
+		submitHandler: function(form, event) {
+			event.preventDefault();
+			console.log(form);
+			var data = formToJson(event.target.elements);
+			console.log(data);
+			var otherData = formToJson(form);
+			// $.ajax({
+			// 	url: "/mail",
+			// 	type: "POST",
+			// 	data: data
+			// })
+			// .done(function(success) {
+			// 	console.log(success);
+			// })
+			// .fail(function(failure) {
+			// 	console.log(failure);
+			// });
+		},
+		rules: {
+			name: "required",
+			email: {
+				email: true,
+				required: true
+			},
+			message: "required"
+		},
+		messages: {
+			name: "Your name is required.",
+			email: {
+				email: "Please enter a valid email.",
+				required: "Your email is required."
+			},
+			message: "Please type a message!"
+		}
+	});
+	//
+	// //submit handler for contact form
+	// $('#contactForm').on('submit', function(event) {
+	// 	event.preventDefault();
+	//
+	// });
+});
+
+
+
+
+
 $(function() {
 
     $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
@@ -21,7 +73,7 @@ $(function() {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "/api/send",
+                url: "/mail",
                 type: "POST",
                 data: {
                     name: name,
@@ -58,7 +110,7 @@ $(function() {
                 //cache: false,
                 // success: function() {
                 //     // Success message
-                    
+
                 // },
                 // error: function() {
                 //     // Fail message
