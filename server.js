@@ -26,11 +26,9 @@ app.set('view engine', 'hbs');
 app.use(express.static('public'));
 
 //routes
-const getRoutes = require('./routes/get');
-const postRoutes = require('./routes/post');
+const routes = require('./routes/index');
 
-app.use(getRoutes);
-app.use(postRoutes);
+app.use(routes);
 
 //port
 const PORT = process.env.PORT || 3000;
