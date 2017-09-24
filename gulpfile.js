@@ -41,7 +41,7 @@ gulp.task('sass', function() {
 
 // Minify compiled CSS
 gulp.task('minify-css', ['sass'], function() {
-	return gulp.src('public/css/*.css')
+	return gulp.src('public/css/styles.css')
 		.pipe(cleanCSS({ compatibility: 'ie8' }))
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(gulp.dest('public/css'))
@@ -57,7 +57,7 @@ gulp.task('concat-js', function() {
 
 // Minify JS
 gulp.task('minify-js', function() {
-	return gulp.src('public/js/agency.js')
+	return gulp.src('public/js/index.js')
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(gulp.dest('public/js'))
