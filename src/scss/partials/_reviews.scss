@@ -1,0 +1,17 @@
+.review {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	margin: 2em 0 0 0;
+	h4 {
+		margin-top: 0;
+	}
+}
+.review-img {
+	width: 50%;
+	padding: 0 1em 0 0;
+	img {
+		width: 100%;
+		height: auto;
+	}
+}

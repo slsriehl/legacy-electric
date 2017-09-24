@@ -1,0 +1,61 @@
+#brand-div {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	@media screen and (max-width: 768px) {
+			margin-left: 2em;
+	}
+}
+#brand-div-img {
+	display: block;
+	padding: 0 1em 0 0;
+	@media screen and (max-width: 975px) {
+		margin: 0.5em 0;
+	}
+}
+#brand-div-text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	width: 100%;
+	.navbar-brand {
+		color: $theme-primary;
+		@include script-font;
+		font-size: 1em;
+		padding-top: 1em;
+		@media screen and (min-width: 1110px) {
+			font-size: 1.5em;
+		}
+		&:hover,
+		&:focus,
+		&:active,
+		&.active {
+			color: $primary-light;
+		}
+		@media screen and (max-width: 768px) {
+			padding: 1em 0 0 0;
+		}
+	}
+	a {
+		//padding-left: 1em;
+	}
+	span {
+		color: $theme-primary;
+		font-size: 0.75em;
+		text-decoration: bold;
+		padding-bottom: 0.5em;
+		@media screen and (min-width: 1110px) {
+			font-size: 1em;
+		}
+	}
+}
+
+#bs-example-navbar-collapse-1 {
+	@media screen and (min-width:768px) {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+	}
+}

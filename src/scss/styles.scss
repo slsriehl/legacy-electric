@@ -1,0 +1,51 @@
+/* reset handled by bootstrap */
+//@import "reset/_reset";
+
+@import "variables/_colors";
+//@import "variables/_fonts";
+@import "mixins/_mixins";
+
+// Global Components
+@import "partials/_body";
+
+//expanded brand section
+@import "partials/_brand";
+
+// Restyled Primary Buttons
+@import "partials/_buttons";
+
+//Custom Navigation Bar
+@import "partials/_nav-bar";
+
+//headers
+@import "partials/_headers";
+
+//intro section
+@import "partials/_intro";
+
+//For Homes section
+@import "partials/_homes";
+
+// Services Section
+@import "partials/_services";
+
+// Team Section
+@import "partials/_team";
+
+//reviews section
+@import "partials/_reviews";
+
+// Contact Section
+@import "partials/_contact";
+
+// Footer
+@import "partials/_footer";
+
+// Social Buttons
+@import "partials/_social";
+
+//portfolio modals
+@import "partials/_modal";
+
+// Highlight Color Customization
+@import "partials/_highlight";

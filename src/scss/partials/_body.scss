@@ -1,0 +1,76 @@
+body {
+	overflow-x: hidden;
+	@include body-font;
+}
+
+.text-muted {
+	color: $gray-light;
+}
+
+.text-primary {
+	color: $theme-primary;
+}
+
+p {
+	font-size: 1em;
+	line-height: 1.75;
+}
+
+p.large {
+	font-size: 1.25em;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	@include heading-font;
+	font-weight: 700;
+}
+
+.img-centered {
+	margin: 0 auto;
+}
+
+.bg-light-gray {
+	background-color: $gray-lighter;
+}
+
+.bg-darkest-gray {
+	background-color: $gray-darker;
+}
+
+.text-blue {
+	color: $primary-light;
+}
+
+//global section styles
+section {
+	color: $gray;
+	padding: 2em 0;
+	h2.section-heading {
+		font-size: 40px;
+		margin-top: 0;
+		margin-bottom: 15px;
+	}
+	h3.section-subheading {
+		font-size: 16px;
+		@include serif-font;
+		text-transform: none;
+		font-style: italic;
+		font-weight: 400;
+		margin-bottom: 75px;
+	}
+}
+
+@media(min-width:768px) {
+	section {
+		padding: 150px 0;
+	}
+}
+
+.col-img-div {
+	width: 100%;
+	img {
+		width: 100%;
+		height: auto;
+	}
+}

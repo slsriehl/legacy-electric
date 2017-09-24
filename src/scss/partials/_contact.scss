@@ -1,0 +1,53 @@
+
+section#contact {
+	//background-color: $gray-darker;
+	background-image: url('../img/production/contact.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	.section-heading {
+		color: white;
+		margin-bottom: 1em;
+	}
+	.form-group {
+		margin-bottom: 25px;
+		input,
+		textarea {
+			padding: 20px;
+			color: $gray-darker;
+			background-color: $gray-lighter;
+		}
+		input.form-control {
+			height: auto;
+		}
+		textarea.form-control {
+			height: 236px;
+		}
+	}
+	.form-control:focus {
+		border-color: $theme-primary;
+		box-shadow: none;
+	}
+	::-webkit-input-placeholder {
+		@include heading-font;
+		font-weight: 700;
+		color: $gray-light;
+	}
+	:-moz-placeholder { /* Firefox 18- */
+		@include heading-font;
+		font-weight: 700;
+		color: $gray-light;
+	}
+	::-moz-placeholder {  /* Firefox 19+ */
+		@include heading-font;
+		font-weight: 700;
+		color: $gray-light;
+	}
+	:-ms-input-placeholder {
+		@include heading-font;
+		font-weight: 700;
+		color: $gray-light;
+	}
+	.text-danger {
+		color: $theme-danger;
+	}
+}
