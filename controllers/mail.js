@@ -2,84 +2,54 @@ const nodemailer = require('nodemailer');
 
 const Promise = require('bluebird');
 
-const moment = require('moment');
+const moment = require('moment-timezone');
+
 
 const ReCAPTCHA = require('recaptcha2');
 
 //variables for email auth
-let config;
-if(!process.env.CONFIG) {
-	config = require('../config/config');
-}
-
 let receiveAddr;
-if(process.env.RECEIVE_ADDR) {
-	receiveAddr = process.env.RECEIVE_ADDR;
-} else {
+let siteKey;
+let secretKey;
+
+if(!process.env.CONFIG) {
+	const config = require('../config/config');
+	//recaptcha keys
+	// siteKey = config.siteKey;
+	// secretKey = config.secretKey;
 	receiveAddr = config.receiveAddr;
-}
-
-let sendAddr;
-if(process.env.SEND_ADDR) {
-	sendAddr = process.env.SEND_ADDR;
+	//smtp authentication object
+	smtpAuth = {
+		host: config.sendHost,
+		port: config.sendPort,
+		secure: config.sslEmail,
+		auth: {
+			user: config.sendAddr,
+			pass: config.sendPwd
+		}
+	}
 } else {
-	sendAddr = config.sendAddr;
-}
-
-let sendPwd;
-if(process.env.SEND_PWD) {
-	sendPwd = process.env.SEND_PWD;
-} else {
-	sendPwd = config.sendPwd;
-}
-
-let sendHost;
-if(process.env.SEND_HOST) {
-	sendHost = process.env.SEND_HOST;
-} else {
-	sendHost = config.sendHost;
-}
-
-let sendPort;
-if(process.env.SEND_PORT) {
-	sendPort = parseInt(process.env.SEND_PORT);
-} else {
-	sendPort = config.sendPort;
-}
-
-// let siteKey;
-// if(process.env.SITE_KEY) {
-// 	siteKey = process.env.SITE_KEY;
-// } else {
-// 	siteKey = config.siteKey;
-// }
-//
-// let secretKey;
-// if(process.env.SECRET_KEY) {
-// 	secretKey = process.env.SECRET_KEY;
-// } else {
-// 	secretKey = config.secretKey;
-// }
-
-let sslEmail;
-if(process.env.SSL_EMAIL) {
+	// siteKey = process.env.SITE_KEY;
+	// secretKey = process.env.SECRET_KEY;
+	receiveAddr = process.env.RECEIVE_ADDR;
+	let sslEmail;
 	if(process.env.SSL_EMAIL == '1') {
 		sslEmail = true;
+	} else {
+		sslEmail = false;
 	}
-} else {
-	sslEmail = config.sslEmail;
+	//smtp authentication object
+	smtpAuth = {
+		host: process.env.SEND_HOST,
+		port: process.env.SEND_PORT,
+		secure: sslEmail,
+		auth: {
+			user: process.env.SEND_ADDR,
+			pass: process.env.SEND_PWD
+		}
+	}
 }
 
-//smtp authentication object
-const smtpAuth = {
-	host: sendHost,
-	port: sendPort,
-	secure: sslEmail,
-	auth: {
-		user: sendAddr,
-		pass: sendPwd
-	}
-}
 //create the smtp transport
 const transporter = Promise.promisifyAll(nodemailer.createTransport(smtpAuth));
 
@@ -99,7 +69,7 @@ const controller = {
 			from: `"legacyelectricaustin.com" <${sendAddr}>`,
 			to: receiveAddr,
 			subject: 'new message from legacyelectricaustin.com',
-			html: `<h2>name: ${req.body.name}</h2><h2>email: ${req.body.email} </h2><h2>phone: ${req.body.tel}</h2><h2>message</h2>${message}<p>date: ${moment().utc().format('YYYY-MM-DD HH:mm:ss UTC')}</p>`
+			html: `<h2>name: ${req.body.name}</h2><h2>email: ${req.body.email} </h2><h2>phone: ${req.body.tel}</h2><h2>message</h2>${message}<p>date: ${moment().tz('America/Chicago').format('ddd, MMMM Do, YYYY h:mm a Central Time')}</p>`
 		}
 		console.log(mailOptions);
 
@@ -113,7 +83,7 @@ const controller = {
 		//check the captcha and send the mail
 		// return recaptcha.validateRequest(req)
 		// .then((success) => {
-			return transporter.sendMailAsync(mailOptions);
+			return transporter.sendMailAsync(mailOptions)
 		//})
 		.then((success) => {
 			console.log(success);
