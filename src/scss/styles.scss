@@ -6,6 +6,8 @@
 @import "variables/_colors";
 
 @import "mixins/_mixins";
+@import "mixins/_block-layouts";
+@import "mixins/_mail";
 
 // Global Components
 @import "partials/_body";
@@ -51,3 +53,6 @@
 
 // Highlight Color Customization
 @import "partials/_highlight";
+
+//mail styles
+@import "partials/_mail";
