@@ -1,8 +1,9 @@
 .intro-text {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;
+	justify-content: center;
 	align-items: center;
+	//padding-bottom: 1rem;
 }
 
 .intro-location {
@@ -15,16 +16,20 @@
 
 .intro-heading {
 	@include script-font;
-	font-size: 4em;
-	line-height: 4em;
-	padding: 2em 0 0 0;
+	font-size: 4rem;
+	line-height: 1;
 }
 
-@media(min-width:768px) {
-	header {
+header {
+	.intro-text {
+		padding: 275px 0 125px 0;
+	}
+	.intro-text-about {
+		padding: 200px 0;
+	}
+	@media screen and (min-width:768px) {
 		.intro-text {
-			padding-top: 200px;
-			padding-bottom: 150px;
+			padding: 300px 0;
 		}
 	}
 }
