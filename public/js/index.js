@@ -57,22 +57,55 @@
 // Contact Form Scripts
 
 
-//submit handler for
-$(document).on('submit', '#contactForm', function(event) {
-	event.preventDefault();
-	var data = formToJson(event.target.elements);
-	$.ajax({
-		url: "/mail",
-		type: "POST",
-		data: data
-	})
-	.done(function(success) {
-		console.log(success);
-	})
-	.fail(function(failure) {
-		console.log(failure);
+$(document).ready(function() {
+
+	//validation for contact form
+	$('#contactForm').validate({
+		submitHandler: function(form, event) {
+			event.preventDefault();
+			console.log(form);
+			var data = formToJson(event.target.elements);
+			console.log(data);
+			var otherData = formToJson(form);
+			// $.ajax({
+			// 	url: "/mail",
+			// 	type: "POST",
+			// 	data: data
+			// })
+			// .done(function(success) {
+			// 	console.log(success);
+			// })
+			// .fail(function(failure) {
+			// 	console.log(failure);
+			// });
+		},
+		rules: {
+			name: "required",
+			email: {
+				email: true,
+				required: true
+			},
+			message: "required"
+		},
+		messages: {
+			name: "Your name is required.",
+			email: {
+				email: "Please enter a valid email.",
+				required: "Your email is required."
+			},
+			message: "Please type a message!"
+		}
 	});
+	//
+	// //submit handler for contact form
+	// $('#contactForm').on('submit', function(event) {
+	// 	event.preventDefault();
+	//
+	// });
 });
+
+
+
 
 
 $(function() {
@@ -156,3 +189,26 @@ $("a[data-toggle=\"tab\"]").click(function(e) {
 $('#name').focus(function() {
     $('#success').html('');
 });
+
+
+//++++++ use these functions to convert the form input to json so the xhr request can send it ++++++
+
+//validate the fields sent to form to JSON so they're excluded if blank
+var isValidElement = function(element) {
+	return element.name && element.value;
+};
+
+//check if a checkbox is checked and include in formToJSON
+var isValidValue = function(element) {
+	return (!['checkbox', 'radio'].includes(element.type) || element.checked);
+}
+
+//convert the input in the form inputs into a json object
+var formToJson = function(elements) {
+	return [].reduce.call(elements, function(data, element) {
+		if(isValidElement(element) && isValidValue(element)) {
+			data[element.name] = element.value;
+		}
+		return data;
+	}, {});
+}
