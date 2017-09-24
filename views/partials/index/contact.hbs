@@ -3,37 +3,44 @@
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<h2 class="section-heading">Contact Us</h2>
+				<div id="success"></div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-					<form name="sentMessage" id="contactForm" novalidate>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<input type="text" class="form-control" name="name">
+					<form name="sentMessage" id="contactForm" class="contact__form">
+						<div class="contact__fields">
+							<div class="contact__fields--inputs contact__fields--inputs--i">
+								<div class="contact__float-label">
+									<input type="text" class="contact__input" name="name">
 									<label for="name">Your Name</label>
 								</div>
-								<div class="form-group">
-									<input class="form-control" name="email">
+								<div class="contact__float-label">
+									<input class="contact__input" name="email">
 									<label for="email">Your Email</label>
 								</div>
-								<div class="form-group">
-									<input type="tel" class="form-control" name="tel">
+								<div class="contact__float-label">
+									<input type="tel" class="contact__input" name="tel">
 									<label for="tel">Your Phone (optional)</label>
 								</div>
 							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<textarea class="form-control" name="message"></textarea>
+							<div class="contact__fields--inputs contact__fields--inputs--t">
+								<div class="contact__float-label">
+									<textarea class="contact__input" name="message"></textarea>
 									<label for="email">Your Message</label>
 								</div>
 							</div>
-							<div class="clearfix"></div>
-							<div class="col-lg-12 text-center">
-								<div class="g-recaptcha" data-sitekey="{{siteKey}}"></div>
-								<div id="success"></div>
-								<button type="submit" class="btn btn-xl">Send Message</button>
+						</div>
+						<div class="row">
+							<div class="contact__fields--submit">
+								<div class="contact--captcha">
+									<div class="g-recaptcha" data-sitekey="{{siteKey}}"></div>
+								</div>
+								<div class="contact__button__container">
+									<button type="submit" class="contact__button">
+										Send Message
+									</button>
+								</div>
 							</div>
 						</div>
 					</form>
