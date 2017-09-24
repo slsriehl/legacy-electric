@@ -15,8 +15,9 @@ let secretKey;
 if(!process.env.CONFIG) {
 	const config = require('../config/config');
 	//recaptcha keys
-	// siteKey = config.siteKey;
-	// secretKey = config.secretKey;
+	siteKey = config.siteKey;
+	secretKey = config.secretKey;
+	//address to send to
 	receiveAddr = config.receiveAddr;
 	//smtp authentication object
 	smtpAuth = {
@@ -29,9 +30,12 @@ if(!process.env.CONFIG) {
 		}
 	}
 } else {
-	// siteKey = process.env.SITE_KEY;
-	// secretKey = process.env.SECRET_KEY;
+	//recaptcha keys
+	siteKey = process.env.SITE_KEY;
+	secretKey = process.env.SECRET_KEY;
+	//address to send to
 	receiveAddr = process.env.RECEIVE_ADDR;
+	//sslemail status
 	let sslEmail;
 	if(process.env.SSL_EMAIL == '1') {
 		sslEmail = true;
@@ -41,7 +45,7 @@ if(!process.env.CONFIG) {
 	//smtp authentication object
 	smtpAuth = {
 		host: process.env.SEND_HOST,
-		port: process.env.SEND_PORT,
+		port: parseInt(process.env.SEND_PORT),
 		secure: sslEmail,
 		auth: {
 			user: process.env.SEND_ADDR,
