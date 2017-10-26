@@ -13,11 +13,12 @@
 }
 
 .contact__fields {
-	background-color: white;
+	background-color: $gray-lighter;
 	border-radius: 5px;
-	margin: 0 0 3rem 0;
+	margin: 0;
 	width: 100%;
-	padding: 3rem 3rem 0 3rem;
+	padding: 3rem 3rem 1rem 3rem;
+	height: fit-content;
 	@media screen and (min-width: 768px) {
 		@include flex-row;
 		align-items: stretch;
@@ -30,56 +31,99 @@
 		.contact__fields--inputs--i {
 			justify-content: space-between;
 			margin-right: 3rem;
+			width: calc(50% - 3rem);
 		}
 		.contact__fields--inputs--t {
 			justify-content: stretch;
 			margin-left: 3rem;
+			height: 100%;
+			width: calc(50% - 3rem);
 		}
 	}
 }
 
 .contact__fields--submit {
-	@include flex-row;
+	@include flex-column;
 	@include center-center;
 }
 
 .contact__float-label {
-	@include float-label-container;
-	@include float-label;
+	// @include float-label-container;
+	// @include float-label;
 	font-size: 2rem;
-
-	textarea.contact__input {
-		height: 30rem;
-		& + label {
-			top: -30rem;
-		}
-		&.contact__input--filled, &:focus {
-			& + label {
-				top: -32rem;
-			}
-		}
+	margin-bottom: 2rem;
+	@include flex-column;
+	align-items: flex-start;
+	justify-content: stretch;
+	@media screen and (min-width: 768px) {
+		@include flex-row;
+		align-items: center;
 	}
 	.contact__input {
-		@include float-label-input;
-		font-size: inherit;
 		width: 100%;
-		padding: 1rem;
-		color: $gray-darker;
-		background-color: white;
-		border: 3px solid $gray-darker;
-		border-radius: 5px;
-		font-size: 2rem;
-		&.contact__input--filled, &:focus {
-			@include focused-filled-input;
-			& + label {
-				font-size: 2rem;
-				@include focused-filled-label;
-			}
-		}
-		@include float-label-scaled {
-			top: 0.25rem;
+		@media screen and (min-width: 768px) {
+			flex-grow: 1;
 		}
 	}
+	.error {
+		margin-left: 1rem;
+		color: red;
+	}
+	// textarea.contact__input {
+	// 	& + label {
+	// 		top: -30rem;
+	// 	}
+	// 	&.contact__input--filled, &:focus {
+	// 		& + label {
+	// 			top: -32rem;
+	// 			background-color: $gray-lighter;
+	// 		}
+	// 	}
+	// }
+	label {
+		margin-right: 1rem;
+		font-size: 2rem;
+	}
+}
+
+.contact__float-label--t {
+	@include flex-column;
+	justify-content: stretch;
+	label {
+		margin-bottom: 1rem;
+		font-size: 2rem;
+	}
+	.contact__input {
+		flex-grow: 1;
+		height: 18rem;
+	}
+	@media screen and (max-width: 767px) {
+		margin-bottom: 2rem;
+	}
+}
+
+.contact__input {
+	// @include float-label-input;
+	font-size: inherit;
+	//width: 100%;
+	padding: 1rem;
+	color: $gray-darker;
+	background-color: white;
+	border: 3px solid $gray-darker;
+	border-radius: 5px;
+	font-size: 2rem;
+	// &.contact__input--filled, &:focus {
+	// 	@include focused-filled-input;
+	// 	background-color: $gray-lighter;
+	// 	& + label {
+	// 		font-size: 2rem;
+	// 		@include focused-filled-label;
+	// 		background-color: $gray-lighter;
+	// 	}
+	// }
+	// @include float-label-scaled {
+	// 	top: 0.25rem;
+	// }
 }
 
 .contact__form {
@@ -95,18 +139,22 @@
 	@include center-center;
 }
 
-.contact--captcha {
-	@include flex-row;
-	@include start-center;
-	margin-top: -1rem;
-	margin-bottom: 2rem;
+.contact--captcha--container {
+	// margin-top: 1rem;
+	margin-bottom: 5rem;
+	display: block;
+	height: fit-content;
+	.contact--captcha {
+		display: block;
+		height: fit-content;
+	}
 }
 
 
 .contact__button__container {
 	width: 100%;
 	@include flex-row;
-	@include start-center;
+	@include center-center;
 }
 .contact__button {
 	font-size: unset;

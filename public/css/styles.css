@@ -2768,11 +2768,12 @@ iframe {
   align-items: center; }
 
 .contact__fields {
-  background-color: white;
+  background-color: #eeeeee;
   border-radius: 5px;
-  margin: 0 0 3rem 0;
+  margin: 0;
   width: 100%;
-  padding: 3rem 3rem 0 3rem; }
+  padding: 3rem 3rem 1rem 3rem;
+  height: fit-content; }
   @media screen and (min-width: 768px) {
     .contact__fields {
       display: flex;
@@ -2786,61 +2787,66 @@ iframe {
         flex-grow: 1; }
       .contact__fields .contact__fields--inputs--i {
         justify-content: space-between;
-        margin-right: 3rem; }
+        margin-right: 3rem;
+        width: calc(50% - 3rem); }
       .contact__fields .contact__fields--inputs--t {
         justify-content: stretch;
-        margin-left: 3rem; } }
+        margin-left: 3rem;
+        height: 100%;
+        width: calc(50% - 3rem); } }
 
 .contact__fields--submit {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center; }
 
 .contact__float-label {
-  display: block;
-  position: relative;
-  font-size: 2rem; }
-  .contact__float-label label {
-    position: relative;
-    z-index: 25;
-    left: 1rem;
-    top: -3.5rem;
-    cursor: text;
-    transition: all .2s; }
-  .contact__float-label textarea.contact__input {
-    height: 30rem; }
-    .contact__float-label textarea.contact__input + label {
-      top: -30rem; }
-    .contact__float-label textarea.contact__input.contact__input--filled + label, .contact__float-label textarea.contact__input:focus + label {
-      top: -32rem; }
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: stretch; }
+  @media screen and (min-width: 768px) {
+    .contact__float-label {
+      display: flex;
+      flex-direction: row;
+      align-items: center; } }
   .contact__float-label .contact__input {
-    font-size: inherit;
-    width: 100%;
-    padding: 1rem;
-    color: #19394a;
-    background-color: white;
-    border: 3px solid #19394a;
-    border-radius: 5px;
+    width: 100%; }
+    @media screen and (min-width: 768px) {
+      .contact__float-label .contact__input {
+        flex-grow: 1; } }
+  .contact__float-label .error {
+    margin-left: 1rem;
+    color: red; }
+  .contact__float-label label {
+    margin-right: 1rem;
     font-size: 2rem; }
-    .contact__float-label .contact__input::placeholder {
-      opacity: 1;
-      transition: all .2s; }
-    .contact__float-label .contact__input:placeholder-shown:not(:focus)::placeholder {
-      opacity: 0; }
-    .contact__float-label .contact__input.contact__input--filled, .contact__float-label .contact__input:focus {
-      border-color: #2d6583;
-      background-color: unset; }
-      .contact__float-label .contact__input.contact__input--filled + label, .contact__float-label .contact__input:focus + label {
-        font-size: 2rem;
-        color: #2d6583;
-        top: -5.75rem;
-        background-color: #eeeeee;
-        padding: 0 0.25rem; }
-    .contact__float-label .contact__input:placeholder-shown:not(:focus) + * {
-      font-size: 150%;
-      opacity: .5;
-      top: 0.25rem; }
+
+.contact__float-label--t {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch; }
+  .contact__float-label--t label {
+    margin-bottom: 1rem;
+    font-size: 2rem; }
+  .contact__float-label--t .contact__input {
+    flex-grow: 1;
+    height: 18rem; }
+  @media screen and (max-width: 767px) {
+    .contact__float-label--t {
+      margin-bottom: 2rem; } }
+
+.contact__input {
+  font-size: inherit;
+  padding: 1rem;
+  color: #19394a;
+  background-color: white;
+  border: 3px solid #19394a;
+  border-radius: 5px;
+  font-size: 2rem; }
 
 .contact__form {
   display: flex;
@@ -2857,19 +2863,19 @@ iframe {
   justify-content: center;
   align-items: center; }
 
-.contact--captcha {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: -1rem;
-  margin-bottom: 2rem; }
+.contact--captcha--container {
+  margin-bottom: 5rem;
+  display: block;
+  height: fit-content; }
+  .contact--captcha--container .contact--captcha {
+    display: block;
+    height: fit-content; }
 
 .contact__button__container {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center; }
 
 .contact__button {

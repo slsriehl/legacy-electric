@@ -12,35 +12,33 @@
 						<div class="contact__fields">
 							<div class="contact__fields--inputs contact__fields--inputs--i">
 								<div class="contact__float-label">
-									<input type="text" class="contact__input" name="name">
 									<label for="name">Your Name</label>
+									<input type="text" class="contact__input" name="name">
 								</div>
 								<div class="contact__float-label">
-									<input class="contact__input" name="email">
 									<label for="email">Your Email</label>
+									<input class="contact__input" name="email">
 								</div>
 								<div class="contact__float-label">
-									<input type="tel" class="contact__input" name="tel">
 									<label for="tel">Your Phone (optional)</label>
+									<input type="tel" class="contact__input" name="tel">
 								</div>
 							</div>
 							<div class="contact__fields--inputs contact__fields--inputs--t">
-								<div class="contact__float-label">
+								<div class="contact__float-label--t">
+									<label for="message">Your Message</label>
 									<textarea class="contact__input" name="message"></textarea>
-									<label for="email">Your Message</label>
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="contact__fields--submit">
-								<div class="contact--captcha">
-									<div class="g-recaptcha" data-sitekey="{{siteKey}}"></div>
-								</div>
-								<div class="contact__button__container">
-									<button type="submit" class="contact__button">
-										Send Message
-									</button>
-								</div>
+						<div class="contact__fields--submit">
+							<div class="contact--captcha--container">
+								<div class="contact--captcha g-recaptcha" data-sitekey="{{siteKey}}"></div>
+							</div>
+							<div class="contact__button__container">
+								<button type="submit" class="contact__button">
+									Send Message
+								</button>
 							</div>
 						</div>
 					</form>
