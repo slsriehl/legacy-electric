@@ -4,6 +4,10 @@
   "version": "1.0.0",
   "homepage": "http://legacyelectricaustin.com/",
   "author": "Sarah Riehl with Start Bootstrap",
+	"engines": {
+		"node": "6.11.3",
+		"npm": "3.10.10"
+	},
   "license": {
     "type": "MIT",
     "url": "https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE"
