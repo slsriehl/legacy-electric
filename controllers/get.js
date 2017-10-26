@@ -41,7 +41,7 @@ const controller = {
 			let open = [];
 			for(let i in openRes) {
 				const hours = {
-					day: moment(openRes[i].day, 'e').format('dddd'),
+					day: moment((openRes[i].day + 1), 'e').format('dddd'),
 					open: moment(openRes[i].start, 'HHmm').format('h:mm a'),
 					close: moment(openRes[i].end, 'HHmm').format('h:mm a')
 				}
