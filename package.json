@@ -4,17 +4,19 @@
   "version": "1.0.0",
   "homepage": "http://legacyelectricaustin.com/",
   "author": "Sarah Riehl with Start Bootstrap",
-	"engines": {
-		"node": "6.11.3",
-		"npm": "3.10.10"
-	},
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE"
+  "engines": {
+    "node": "6.12.3",
+    "npm": "3.10.10"
   },
+  "license": "MIT",
   "scripts": {
     "test": "test",
-    "start": "node server.js"
+    "start": "node server.js",
+    "start:development": "NODE_ENV=development PORT=3000 nodemon server.js",
+    "build:development": "gulp copy && gulp dev",
+    "clean": "rm -rf node_modules",
+    "install:development": "npm install --development",
+    "install:production": "npm install --production"
   },
   "devDependencies": {
     "bootstrap": "^3.3.7",
@@ -26,7 +28,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-uglify": "^1.5.4",
-    "jquery": "^1.11.3"
+    "jquery": "^1.11.3",
+    "nodemon": "^1.19.1"
   },
   "repository": {
     "type": "git",
@@ -38,7 +41,6 @@
     "body-parser": "^1.16.0",
     "express": "^4.14.1",
     "express-handlebars": "^3.0.0",
-    "moment": "^2.17.1",
     "moment-timezone": "^0.5.13",
     "nodemailer": "^3.0.1",
     "querystring": "^0.2.0",
