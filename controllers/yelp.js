@@ -2,32 +2,45 @@ const axios = require('axios');
 
 const qs = require('querystring');
 
-let fusionApi;
-let tokenCred;
+const config = require('../config/config');
 
-if(!process.env.CONFIG) {
-	const config = require('../config/config');
-	fusionApi = config.fusionApi;
-	tokenCred = config.tokenCred;
-} else {
-	fusionApi = process.env.FUSION_API;
-	tokenCred = {
-		grant_type: process.env.GRANT_TYPE,
-		client_id: process.env.CLIENT_ID,
-		client_secret: process.env.CLIENT_SECRET
-	}
+let env = process.env.NODE_ENV.toUpperCase();
+
+// let authEndpoint = config[env].yelp.endpoint.auth;
+let dataEndpoint = config[env].yelp.endpoint.data;
+let apiKey = config[env].yelp.apiKey;
+
+const headers = {
+	"Authorization": `Bearer ${apiKey}`
+}
+
+const getYelpData = (endpoint, options) => {
+	return axios.get(endpoint, options)
+	.catch(error => {
+		console.log('AXIOS GET ERROR !!')
+		console.log(error);
+		return Promise.reject(error);
+	});
 }
 
 
 const yelpApi = {
-	getToken: () => {
-		return axios.post('https://api.yelp.com/oauth2/token', qs.stringify(tokenCred));
+	// getToken: () => {
+	// 	return axios.post(authEndpoint, qs.stringify(tokenCred));
+	// },
+	getBizInfo: () => {
+		let endpoint = dataEndpoint;
+		let options = {
+			headers
+		}
+		return getYelpData(endpoint, options);
 	},
-	getBizInfo: (access_token) => {
-		return axios.get(fusionApi, access_token);
-	},
-	getReviews: (access_token) => {
-		return axios.get(`${fusionApi}/reviews`, access_token);
+	getReviews: () => {
+		let endpoint = `${dataEndpoint}/reviews`;
+		let options = {
+			headers
+		}
+		return getYelpData(endpoint, options);
 	}
 }
 

@@ -1,8 +1,6 @@
 const util = require('util');
 
-const axios = require('axios');
-
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 const yelpApi = require('./yelp');
 
@@ -10,31 +8,20 @@ const about = require('../data/about');
 const team = require('../data/team');
 const homes = require('../data/homes');
 
-let siteKey;
-if(!process.env.CONFIG) {
-	siteKey = require('../config/config').siteKey;
-} else {
-	siteKey = process.env.SITE_KEY;
-}
+const config = require('../config/config');
+
+let env = process.env.NODE_ENV.toUpperCase();
+
+let siteKey = config[env].captcha.siteKey;
 
 const controller = {
 	renderIndex: (req, res) => {
 		console.log('root fired');
-		return yelpApi.getToken()
-		.then((data) => {
-			console.log('promise 1 fired');
-			console.log(data.data);
-			const access_token = {
-				headers: {
-					'Authorization': `Bearer ${data.data.access_token}`
-				}
-			}
-			return axios.all([
-				yelpApi.getBizInfo(access_token),
-				yelpApi.getReviews(access_token)
-			])
-		})
-		.then(axios.spread((bizInfo, reviewInfo) => {
+		return Promise.all([
+			yelpApi.getBizInfo(),
+			yelpApi.getReviews()
+		])
+		.then(([bizInfo, reviewInfo]) => {
 			console.log(`bizInfo ${util.inspect(bizInfo.data)}`);
 			console.log(`reviews ${util.inspect(reviewInfo.data)}`);
 			let openRes = bizInfo.data.hours[0].open;
@@ -69,10 +56,12 @@ const controller = {
 
 			res.render('index.hbs', {
 				hoursReviews, about, team, homes, siteKey
-			})
-		}))
+			});
+			return Promise.resolve(true);
+		})
 		.catch((err) => {
 			console.log(err);
+			return Promise.resolve(false);
 		});
 	}
 }

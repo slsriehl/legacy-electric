@@ -1,58 +1,18 @@
 const nodemailer = require('nodemailer');
 
-const Promise = require('bluebird');
-
 const moment = require('moment-timezone');
-
 
 const ReCAPTCHA = require('recaptcha2');
 
-//variables for email auth
-let receiveAddr;
-let siteKey;
-let secretKey;
+const config = require('../config/config');
 
-if(!process.env.CONFIG) {
-	const config = require('../config/config');
-	//recaptcha keys
-	siteKey = config.siteKey;
-	secretKey = config.secretKey;
-	//address to send to
-	receiveAddr = config.receiveAddr;
-	//smtp authentication object
-	smtpAuth = {
-		host: config.sendHost,
-		port: config.sendPort,
-		secure: config.sslEmail,
-		auth: {
-			user: config.sendAddr,
-			pass: config.sendPwd
-		}
-	}
-} else {
-	//recaptcha keys
-	siteKey = process.env.SITE_KEY;
-	secretKey = process.env.SECRET_KEY;
-	//address to send to
-	receiveAddr = process.env.RECEIVE_ADDR;
-	//sslemail status
-	let sslEmail;
-	if(process.env.SSL_EMAIL == '1') {
-		sslEmail = true;
-	} else {
-		sslEmail = false;
-	}
-	//smtp authentication object
-	smtpAuth = {
-		host: process.env.SEND_HOST,
-		port: parseInt(process.env.SEND_PORT),
-		secure: sslEmail,
-		auth: {
-			user: process.env.SEND_ADDR,
-			pass: process.env.SEND_PWD
-		}
-	}
-}
+let env = process.env.NODE_ENV.toUpperCase();
+
+//variables for email auth
+let receiveAddr = config[env].receiveAddr;
+let siteKey = config[env].captcha.siteKey;
+let secretKey = config[env].captcha.secretKey;
+let smtpAuth = config[env].smtpAuth;
 
 //create the smtp transport
 const transporter = Promise.promisifyAll(nodemailer.createTransport(smtpAuth));
@@ -81,8 +41,8 @@ const controller = {
 
 		//create the recaptcha object
 		// const recaptcha = new ReCAPTCHA({
-		//   siteKey: siteKey,
-		//   secretKey: secretKey
+		//   siteKey,
+		//   secretKey
 		// });
 		//check the captcha and send the mail
 		// return recaptcha.validateRequest(req)
@@ -92,10 +52,12 @@ const controller = {
 		.then((success) => {
 			console.log(success);
 			res.send(true);
+			return Promise.resolve(true)
 		})
-		.catch((failure) => {
-			console.log(failure);
+		.catch((err) => {
+			console.log(err);
 			res.send(false);
+			return Promise.resolve(false);
 		});
 	}
 }
