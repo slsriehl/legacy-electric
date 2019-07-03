@@ -1,0 +1,33 @@
+
+<section id="reviews" class="bg-light-gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h2 class="section-heading">Reviews</h2>
+				<h3>provided by Yelp</h3>
+				<h4>
+					Overall Rating: {{hoursReviews.rating}} of 5 {{#each hoursReviews.ratingArr}}<i class="fa fa-star"></i> {{/each}}
+				</h4>
+				<h4>3 of {{hoursReviews.noRevs}} Yelp reviews</h4>
+				<h4><a href="{{hoursReviews.url}}" target="_blank">View all reviews</a></h4>
+			</div>
+				
+			{{#each hoursReviews.reviews}}
+				<div class="col-md-4 review">
+					<div class="review-img">
+						{{#if user.image_url}}
+							<img src="{{user.image_url}}" alt="picture of {{user.name}}" />
+						{{/if}}
+					</div>
+					<div>
+						<h4>{{user.name}} said:</h4>
+						<p>{{time_created}}</p>
+						<p>Rating: {{rating}} {{#each ratingArr}}<i class="fa fa-star"></i> {{/each}}</p>
+						<p>{{text}}</p>
+						<p><a href="{{url}}" target="_blank">View full review on Yelp</a></p>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+	</div>
+</section>
