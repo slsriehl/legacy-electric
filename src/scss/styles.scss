@@ -1,7 +1,9 @@
 /* reset handled by bootstrap */
-//@import "reset/_reset";
+// @import "reset/_reset";
 
 @import "font-awesome/_font-awesome";
+
+// @import "variables/_fonts";
 
 @import "variables/_colors";
 
@@ -49,7 +51,7 @@
 @import "partials/_social";
 
 //portfolio modals
-@import "partials/_modal";
+// @import "partials/_modal";
 
 // Highlight Color Customization
 @import "partials/_highlight";

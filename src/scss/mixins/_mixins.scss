@@ -68,18 +68,38 @@
 
 // Font Mixins
 
-@mixin serif-font {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+// @mixin serif-font {
+//   font-family: "Raleway", Georgia, serif;
+//   font-weight: 500;
+//   font-style: normal;
+// }
+
+@mixin jumbotron-font {
+  font-family: 'magneto', cursive, Georgia, serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
-@mixin script-font {
-  font-family: 'Kavoon', cursive, Georgia, serif;
+@mixin brand-font {
+  font-family: /* 'magneto-extended', */ 'magneto', cursive, Georgia, serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 @mixin body-font {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Libre Franklin", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin accent-font {
+  font-family: "Libre Franklin", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: italic;
 }
 
 @mixin heading-font {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Libre Franklin", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }

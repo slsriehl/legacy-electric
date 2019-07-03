@@ -15,15 +15,14 @@
 		text-align: center;
 		h2 {
 			margin-bottom: 15px;
-			font-size: 3em;
+			font-size: 3rem;
 		}
 		p {
 			margin-bottom: 30px;
 		}
 		p.item-intro {
 			margin: 20px 0 30px;
-			@include serif-font;
-			font-style: italic;
+			@include accent-font;
 			font-size: 16px;
 		}
 		ul.list-inline {

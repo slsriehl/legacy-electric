@@ -7,15 +7,14 @@
 }
 
 .intro-location {
-	@include serif-font;
-	font-style: italic;
-	font-size: 2em;
-	line-height: 2em;
+	@include accent-font;
+	font-size: 2rem;
+	line-height: 2rem;
 	//padding-bottom: 1.5em;
 }
 
 .intro-heading {
-	@include script-font;
+	@include jumbotron-font;
 	font-size: 4rem;
 	line-height: 1;
 }
