@@ -1,31 +1,14 @@
 <section id="services">
-	<div class="container">
-
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<h2 class="section-heading">For Homes</h2>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-12">
-				<p>{{homes.problems.intro}}</p>
-				<ul>
-					{{#each homes.problems.list}}
-						<li>{{this}}</li>
-					{{/each}}
-				</ul>
-				<p>{{homes.problems.outro}}</p>
-			</div>
-			{{#each homes.clients}}
-				<div class="col-md-4">
-					<div class="col-img-div">
-						<img src="{{img}}" alt="{{alt}}" />
-					</div>
-					<h3>{{type}}</h3>
-					<p>{{info}}</p>
+	{{#each services}}
+		<div class="container" id="{{id}}">
+			<div class="row">
+				<div class="col-12 text-center">
+					<h2 class="section-heading">{{title}}</h2>
 				</div>
-			{{/each}}
+				<div class="col-12">
+					<p>{{text}}</p>
+				</div>
+			</div>
 		</div>
-	</div>
+	{{/each}}
 </section>

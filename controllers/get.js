@@ -6,7 +6,7 @@ const yelpApi = require('./yelp');
 
 const about = require('../data/about');
 const team = require('../data/team');
-const homes = require('../data/homes');
+const services = require('../data/services');
 
 const config = require('../config/config');
 
@@ -55,7 +55,7 @@ const controller = {
 			}
 
 			res.render('index.hbs', {
-				hoursReviews, about, team, homes, siteKey
+				hoursReviews, about, team, services, siteKey
 			});
 			return Promise.resolve(true);
 		})
